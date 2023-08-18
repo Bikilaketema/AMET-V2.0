@@ -4,21 +4,21 @@
 
 {% block css %}
 <link rel="stylesheet" href="{{ url_for('static', filename='base.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='category.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
 {% endblock %}
 
 {% block content %}
-    <div class="container">
-        <h1>{{category}}</h1>
-        <div class="product-list">
-            {% for item in products %}
-            <div class="product-card">
-                <img src="{{ item.image }}" alt="{{ item.title }}">
-                <h3>{{ item.title[:30] + '...' }}</h3>
-                <p>{{ item.description[:50] + '...' }}</p>
-                <p>Price: ${{ item.price }}</p>
-            </div>
-            {% endfor %}
+
+    <h1>{{ category }}</h1>
+    <div id="main-container">
+        {% for item in products %}
+        <div id="product-card">
+            <img src="{{ item.image }}" alt="{{ item.title }}">
+            <h3>{{ item.title }}</h3>
+            <p>{{ item.description }}</p>
+            <p>Price: ${{ item.price }}</p>
+            <button class="orderbtn">ORDER</button>
         </div>
-    </div>
+        {% endfor %}
+
 {% endblock %}

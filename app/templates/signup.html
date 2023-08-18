@@ -3,27 +3,40 @@
 {% block title %}Signup{% endblock %}
 {% block css %}
 <link rel="stylesheet" href="{{ url_for('static', filename='base.css') }}">
-<link rel="stylesheet" href="{{ url_for('static', filename='login.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='signup.css') }}">
 {% endblock %}
 
 {% block content %}
-    <!-- Your pages content here -->
-    <div class="container">
+    <div id="signup-container">
         <h1>Sign Up</h1>
         
         {% if error %}
             <p style="color: red;">{{ error }}</p>
         {% endif %}
-        <form method="POST" action="/signup">
+        <form id="signup" method="POST" action="/signup">
+
+            <label for="fname">First name</label>
+            <input type="text" name="fname" required>
+
+            <label for="lname">Last name</label>
+            <input type="text" name="lname" required>
+
+            <label for="phnum">Phone Number</label>
+            <input type="tel" name="phnum" placeholder="0942-932-231" pattern="[0-9]{4}-[0-9]{3}-[0-9]{3}" required>
             <label for="email">Email:</label>
             <input type="email" name="email" value="{{ email }}" required autocomplete="off">
+
+            <label for="dob">Date of Birth</label>
+            <input type="date" name="dob" required>
+
             <label for="password">Password:</label>
             <input type="password" name="password" required autocomplete="new-password">
+
             <label for="password">Confirm your Password:</label>
             <input type="password" name="confirm_password" required autocomplete="new-password">
-            <button type="submit" class="sgn">Sign Up</button>
-          </form>
-          
-</div>
 
-    {% endblock %}
+            <button type="submit" id="signup-button">Sign Up</button>
+          </form>
+
+    </div>
+{% endblock %}

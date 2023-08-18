@@ -1,124 +1,203 @@
-header {
+html {
+  box-sizing: border-box;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 12px;
+}
+* {
+  box-sizing: border-box;
+}
+ *, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+}
+
+#navbar {
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
   background-color: #ff6e00;
+  position:fixed;
+  top: 0;
+  right: 0;
+  left: 0;
 
 }
 
-.navcon {
-  overflow: hidden;
+#top-section {
   display: flex;
-  white-space: nowrap;
-}
-
-.navcon img {
-  margin-left: 5px;
-}
-
-
-.navcon a {
-  display: flex;
-  margin-left: 20px;
-  margin-bottom: 5px;
-  margin-right: 20px;
-  background-color: #4CAF50;
-  color: #fff;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 16px;
-  white-space: nowrap;
+  justify-content: space-between;
+  flex-grow: 1;
+  padding: 1%;
   
 }
 
-.logo {
-  max-width: 7%;
-  max-height: 7%;
-  object-fit: contain;
+#bottom-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-grow: 1;
+  padding:1%;
+}
+
+#bottom-section .icon {
+  width: 25px;
+  height: 25px;
+}
+
+
+
+#bottom-section input {
   border-radius: 10px;
-
+  border: none;
+  padding: 5%;
+  font-size: 10px;
 }
 
-.navbar-toggler-icon {
-  background-color: #f4f4f4;
-  border-radius: 50%;
-
-}
-
-.navbar-toggler {
-  margin-bottom: auto;
-}
-
-.navbar-toggler:focus {
-  outline: none;
-}
-
-
-@media (min-width: 576px) {
-  .navbar-toggler {
-      top: 50%;
-      right: 10px;
-      transform: translateY(-50%);
-      display: block;
-  }
-
-  .navbar-nav {
-      margin-top: 10px;
-      flex-direction: column;
-      text-align: center;
-  }
-
-  .navbar-collapse {
-    display: none;
-  }
-
-  .navbar-nav .nav-item {
-    margin-bottom: 10px;
-  }
-
-  .collapse a:hover {
-    background-color: #1a5a1d;
-  }
-
+.search-input {
+  width: 50%;
+  height: 10px;
+  margin-left: 3%;
 }
 
 
 
-
-button {
-  background-color: #4CAF50;
+#nav-anchor {
+  text-decoration: none;
   color: #fff;
+  white-space: nowrap;
+  font-size: 3vw;
+  flex-grow: 1;
+}
+
+#navbar button {
+  background-color: #4CAF50;
+  font-size: 10px;
+  min-width: fit-content;
+  max-width: fit-content;
   border: none;
   border-radius: 4px;
-  padding: 12px 20px;
   cursor: pointer;
-  font-size: 16px;
+  flex-grow: 1;
+  margin-right: 7px;
+
 }
 
-/* Body */
-body {
-  font-family: Arial, sans-serif;
-  background-color: #f4f4f4;
-  margin: 0;
-  padding: 0;
-}
-
-.container {
-  max-width: 90%;
-  margin: 40px auto;
-  padding: 40px;
+#container {
+  max-width: 100%;
   background-color: #fff;
   border-radius: 5px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
   text-align: center;
+  margin-bottom: 40px;
+  margin-top: 110px;
+  margin-right: 10px;
+  margin-left: 10px;
 }
 
-
-/* Footer */
 footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
   background-color: #ff6e00;
-  padding: 20px;
   text-align: center;
-  font-size: 14px;
-  color: #000000;
-  font-size: 12px;
+  font-size: 2vw;
+}
+
+#logo {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  margin-right: 10px;
 }
 
 
+@media (min-width: 768px) {
+
+  #container {
+    margin-bottom: 65px;
+    margin-top: 110px;
+  }
+
+  #navbar {
+    max-width: 100%;
+    display: flex;
+    flex-direction: row;
+    background-color: #ff6e00;
+    position:fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    max-height: 10%;
+
+    
+    
+  }
+
+  #top-section {
+    width: 49%;
+    
+  }
+  
+  #bottom-section {
+    align-items: center;
+
+  }
+
+  #nav-anchor {
+    text-decoration: none;
+    color: #fff;
+    white-space: nowrap;
+    font-size: 1vw;
+    flex-grow: 1;
+  }
+  
+  #navbar button {
+    background-color: #4CAF50;
+    min-width: fit-content;
+    max-width: 150px;
+    height: auto;
+    max-height: fit-content;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    flex-grow: 1;
+    margin-right: 1%;
+  
+  }
+  
+  .search-input {
+    width: 50%;
+    margin-right: 3%;
+    height: 2px;
+    margin-top: 2px;
+  }
+
+
+  #bottom-section .icon {
+    width: 40px;
+    height: auto;
+    max-height: 50px;
+    margin-right: 3%;
+  }
+  
+
+  #logo {
+    width: 50px;
+    height: auto;
+    border-radius: 10px;
+    margin-right: 3%;
+    max-width: fit-content;
+  }
+
+  footer {
+    font-size: 1vw;
+
+  }
+
+}

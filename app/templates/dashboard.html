@@ -8,19 +8,15 @@
 {% endblock %}
 
 {% block content %}
-    <!-- Your pages content here -->
-    <!DOCTYPE html>
-<body>
-    <div class="row">
-    <div class="container">
-    <h1>{{ email }}, now you can buy what you want!</h1>
-    <p>You have successfully logged in.</p>
+
+    <h1>Welcome to your Dashboard, {{ user.fname }}!</h1>
+    <h3>You have successfully logged in. Now you can buy what you want!</h3>
+    <p>Email: {{ user.email }}</p>
+    <p>Phone Number: {{ user.phnum }}</p>
+    <p>Date of Birth: {{ user.dob }}</p>
+
     <button><a href="/">Home</a></button>
-    <br>
-    <br>
+    <button id="ed"><a href=/edit>Edit Your Info</a></button>
     <button ><a href="/logout">Logout</a></button>
-    </div>
-    </div>
-</body>
 
     {% endblock %}
