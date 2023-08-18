@@ -2,8 +2,11 @@
 
 This repository contains the source code for AMET.com | an ideal marketplace that I created for my ALX SWE foundations program.
 https://drive.google.com/file/d/12iy84T6lcRkSJqg2BpBg5FsrK9UQ2Wmx/view?usp=sharing
-## Authors
 
+## NB
+This website is totally ideal and it is not an operating company(At least now). The contents in the introduction part of this README have some ideal issues.
+
+## Author
 - [@bikilaketema](https://www.github.com/bikilaketema)
 
 
@@ -11,7 +14,7 @@ https://drive.google.com/file/d/12iy84T6lcRkSJqg2BpBg5FsrK9UQ2Wmx/view?usp=shari
 
 AMET.com aims to solve the problem of providing a user-friendly and efficient online marketplace for individuals and businesses to buy and sell various products and services. The platform includes features such as user authentication, product listings, shopping cart functionality, payment integration, a review and rating system, and messaging capabilities.(Currently not all the features are integrated.)
 
-The project is built using HTML, CSS, and JavaScript for the front-end, and a web framework Flask for the back-end. Currently the platform is using Firebase to store it's users data and that is because the platform is using firebase authentication system. The products listed on the website are retrived from fakestore's API.
+The project is built using HTML, CSS, and JavaScript for the front-end, and a web framework Flask for the back-end. Currently the platform is using JSON files to store it's users data and that is because the platform is not using  any authentication system out there. Version one of it was using firebase to store it's users data but now it's using JSON file to store it's users data locally. I know that using JSON file to store user data is not technically feasible but it's the first stage of the website going from using other api's to building it's own database. The products listed on the website was being retrived from fakestore's API on version 1.0. But now that is coming from locally stored data too. This two are the main improvements in this version.
 
 ## Features
 
@@ -19,23 +22,22 @@ The project is built using HTML, CSS, and JavaScript for the front-end, and a we
 - Product listings: Buyers can see what products are available on the platform..
 - Review and rating system(Not implemented)
 - Messaging system: Buyers and sellers can communicate with each other through the platform.(Not implemented).
-- Responsive design: The platform is optimized for various devices, including desktop and mobile.
+- Responsive design: The platform is optimized for desktop and mobile screens using CSS flex box and media query. (Still not used any CSS Framework).
 
 ## Technologies used
-- Programming Languages: HTML, CSS, JavaScript, Python
-- Front-end Framework: Bootstrap
+- Programming Languages: HTML and CSS(for the frontend), Python(With flask frame work)
+- Front-end Framework: CSS Only: with media query and flexbox to make it responsive
 - Back-end Framework: Flask
-- Database: currently it does not have it's own database, but uses firebase's database to store it's users data.
-- Deployment: Deployed on ubuntu server using NGINX and GUNICORN.
+- Database: currently it does not have it's own database, but stores it's data locally in a JSON file.
+- Deployment: Deployed on ubuntu server using NGINX and GUNICORN.(When I was learning SWE foundations @ALX Africa I got a server there for free and the website was once deployed on that server. But currently it is not deployed on any active server. Some times I run it on my PC to show it to my friends.)
 
 ## Usage
 Once they open the website, users can perform the following actions:
 
 - Create an account or log in with existing credentials.
-- Browse product listings and search for specific items.
+- Browse product listings and search for specific items.(Searching is not implemented.)
 - Add products to the shopping cart and proceed to checkout.(Not implemented)
 - Pay securely using the integrated payment systems.(Not integrated)
 
-#NB
+## NB
 This project is underdevelopment.
-You can access the deployed website at https://amet.noahgs.tech
