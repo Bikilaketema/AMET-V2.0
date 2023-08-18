@@ -40,4 +40,4 @@ Once they open the website, users can perform the following actions:
 - Pay securely using the integrated payment systems.(Not integrated)
 
 ## NB
-This project is underdevelopment.
+This project is underdevelopment. You can download the repo. Create a python3 virtual environement install the requirements in the env and run the web app using flask.
