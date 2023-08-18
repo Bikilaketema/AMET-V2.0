@@ -15,7 +15,7 @@ config.read('config.ini')
 app.secret_key = config.get('flask', 'SECRET_KEY')
 
 
-#route to display the products listing page
+#route to display the homepage of the website
 @app.route('/')
 def index():
     products = product_data.products_data
