@@ -3,27 +3,26 @@
 {% block title %}Contact us{% endblock %}
 {% block css %}
 <link rel="stylesheet" href="{{ url_for('static', filename='base.css') }}">
-<link rel="stylesheet" href="{{ url_for('static', filename='contact.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='signup.css') }}">
 {% endblock %}
 
 {% block content %}
-    <!-- Your pages content here -->
-    <div class="containercon">
+  <div id="signup-container">
         <h1>Contact Us</h1>
-        <p>If you have any questions, feedback, or inquiries, please don't hesitate to reach out to us. Our dedicated team is here to assist you.</p>
+        <p>If you have any questions, feedback, or inquiries, please don't hesitate<br>to reach out to us. Our dedicated team is here to assist you.</p>
         
         <form>
           <label for="name">Name:</label><br>
-          <input type="text" id="name" name="name" required><br>
+          <input type="text" id="name" name="name" required id="c-textbox"><br>
           
           <label for="email">Email:</label><br>
-          <input type="email" id="email" name="email" required><br>
+          <input type="email" id="email" name="email" required id="c-textbox"><br>
           
           <label for="message">Message:</label><br>
           <textarea id="message" name="message" required></textarea><br><br>
           
-          <button type="submit" class="sub">Submit</button><br>
-        </form>
-      </div>    
+          <button type="submit" id="signup-button">Submit</button><br>
+        </form>  
+    </div> 
 
     {% endblock %}

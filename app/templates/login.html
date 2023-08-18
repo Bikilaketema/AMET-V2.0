@@ -8,23 +8,19 @@
 {% endblock %}
 
 {% block content %}
-    <!-- Your pages content here -->
-    <body>
-        <div class="container">
+
+  <div id="login-container">
         <h1>Login</h1>
         {% if error %}
         <div class="error-message">{{ error }}</div>
         {% endif %}
         <form method="post" action="/login">
-            <label>Email:</label>
-            <input type="email" name="email" value="{{ email }}" required autocomplete="off">
+            <label>Email:</label><br>
+            <input type="email" name="email" value="{{ email }}" required autocomplete="off"class="textbox">
             <br>
             <label>Password:</label>
-            <input type="password" name="password" required autocomplete="new-password">
-            <button type="submit" class="log">Login</button>
+            <input type="password" name="password" required autocomplete="new-password"class="textbox"><br>
+            <button type="submit" id="login-button">Login</button>
           </form>
-          
-        </div>
-    </body>
-
+  </div>
     {% endblock %}

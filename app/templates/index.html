@@ -10,27 +10,21 @@
 
 {% block content %}
     <!-- Your index.html content here -->
-    <body>
-        <div class="container">
-        <section class="hero">
-            <div class="hero-content">
-                <h1>Discover a world of amazing products and services.</h1>
-            </div>
-        </section>
-        <div>
-            <div>
-                <div class="product-list">
-                    {% for item in products %}
-                    <div class="product-card">
-                        <img src="{{ item.image }}" alt="{{ item.title }}">
-                        <h3>{{ item.title[:30] + '...' }}</h3>
-                        <p>{{ item.description[:50] + '...' }}</p>
-                        <p>Price: ${{ item.price }}</p>
-                    </div>
-                    {% endfor %}
-                </div>
-        </div>
-    </body>
+
+    <img src="{{ url_for('static', filename='images/banner.jpg') }}" id="banner">    
     
+    <div id="main-container">
+
+                {% for item in products %}
+                <div id="product-card">
+                    <img src="{{ item.image }}" alt="{{ item.title }}">
+                    <h3>{{ item.title[:30] + '...' }}</h3>
+                    <p>{{ item.description[:50] + '...' }}</p>
+                    <p>Price: ${{ item.price }}</p>
+                    <button class="orderbtn">ORDER</button>
+                </div>
+                {% endfor %}
+        
+    </div>
 
 {% endblock %}
