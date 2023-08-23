@@ -3,10 +3,25 @@ import bcrypt
 from flask import Flask, render_template, request, redirect, session
 import json
 import os
-from data import category as category_data
-from data import products as product_data
+from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__, static_folder='static')
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///amet.db'
+db = SQLAlchemy(app)
+
+class Product(db.Model):
+    id = db.Column(db.Integer(),primary_key=True)
+    title = db.Column(db.String(length=20),nullable=False,unique=True)
+    category = db.Column(db.String(length=20),nullable=False)
+    image = db.Column(db.String(length=20),nullable=False,unique=True)
+    price = db.Column(db.Integer(),nullable=False)
+    description = db.Column(db.String(length=1024),nullable=False,unique=True)
+
+class Category(db.Model):
+    id = db.Column(db.Integer(),primary_key=True)
+    name = db.Column(db.String(length=20),nullable=False,unique=True)
+    image = db.Column(db.String(length=20),nullable=False,unique=True)
+
 
 # Read the secret key from the configuration file
 config = configparser.ConfigParser()
@@ -16,23 +31,25 @@ app.secret_key = config.get('flask', 'SECRET_KEY')
 
 
 #route to display the homepage of the website
+@app.route('/home')
 @app.route('/')
 def index():
-    products = product_data.products_data
+    products = Product.query.all()
     return render_template('index.html', products=products)
 
 #root to display the products category page
 @app.route('/products')
 def products():
     # Fetch product categories from data/category.py
-    categories = category_data.categories_data
+    categories = Category.query.all()
 
     return render_template('products.html', categories=categories)
 
 @app.route('/category/<string:category>')
 def category(category):
-    products = [product for product in product_data.products_data if product['category'] == category]
+    products = Product.query.filter_by(category=category).all()
     return render_template('category.html', category=category, products=products)
+
 
 #route to display the about page
 @app.route('/about')

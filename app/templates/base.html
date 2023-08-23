@@ -16,17 +16,17 @@
             
             <div id="top-section">
             <img src="{{ url_for('static', filename='images/logo.png') }}" id="logo">
-            <button><a href="/" id="nav-anchor">Home</a></button>
-            <button><a href="/products"id="nav-anchor">Products</a></button>
+            <button><a href="{{ url_for('index') }}" id="nav-anchor">Home</a></button>
+            <button><a href="{{ url_for('products') }}"id="nav-anchor">Products</a></button>
             {% if 'user' in session %}
-            <button><a href="/logout"id="nav-anchor">Log out</a></button>
-            <button><a href="/dashboard"id="nav-anchor">Dashboard</a></button>
+            <button><a href="{{ url_for('logout') }}"id="nav-anchor">Log out</a></button>
+            <button><a href="{{ url_for('dashboard') }}"id="nav-anchor">Dashboard</a></button>
             {% else %}
-            <button><a href="/login"id="nav-anchor">Log in</a></button>
-            <button><a href="/signup"id="nav-anchor">Sign up</a></button>
+            <button><a href="{{ url_for('login') }}"id="nav-anchor">Log in</a></button>
+            <button><a href="{{ url_for('signup') }}"id="nav-anchor">Sign up</a></button>
             {% endif %}
-            <button><a href="/about"id="nav-anchor">About</a></button>
-            <button><a href="/contact"id="nav-anchor">Contact us</a></button>
+            <button><a href="{{ url_for('about') }}"id="nav-anchor">About</a></button>
+            <button><a href="{{ url_for('contact') }}"id="nav-anchor">Contact us</a></button>
             </div>
 
             <div id="bottom-section">
