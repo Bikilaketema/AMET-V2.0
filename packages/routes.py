@@ -1,26 +1,10 @@
+from packages import app
+from flask import render_template,request, redirect, session
+from packages.models import Product,Category
 import configparser
-import bcrypt
-from flask import Flask, render_template, request, redirect, session
 import json
 import os
-from flask_sqlalchemy import SQLAlchemy
-
-app = Flask(__name__, static_folder='static')
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///amet.db'
-db = SQLAlchemy(app)
-
-class Product(db.Model):
-    id = db.Column(db.Integer(),primary_key=True)
-    title = db.Column(db.String(length=20),nullable=False,unique=True)
-    category = db.Column(db.String(length=20),nullable=False)
-    image = db.Column(db.String(length=20),nullable=False,unique=True)
-    price = db.Column(db.Integer(),nullable=False)
-    description = db.Column(db.String(length=1024),nullable=False,unique=True)
-
-class Category(db.Model):
-    id = db.Column(db.Integer(),primary_key=True)
-    name = db.Column(db.String(length=20),nullable=False,unique=True)
-    image = db.Column(db.String(length=20),nullable=False,unique=True)
+import bcrypt
 
 
 # Read the secret key from the configuration file
@@ -28,6 +12,7 @@ config = configparser.ConfigParser()
 config.read('config.ini')
 
 app.secret_key = config.get('flask', 'SECRET_KEY')
+
 
 
 #route to display the homepage of the website
@@ -188,7 +173,3 @@ def dashboard():
 def logout():
     session.pop('user', None)
     return redirect('/login')
-
-
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000)

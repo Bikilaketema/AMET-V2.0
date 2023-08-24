@@ -4,7 +4,7 @@
 
 {% block css %}
 <link rel="stylesheet" href="{{ url_for('static', filename='base.css') }}">
-<link rel="stylesheet" href="{{ url_for('static', filename='dashboard.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='signup.css') }}">
 {% endblock %}
 
 {% block content %}
@@ -15,8 +15,8 @@
     <p>Phone Number: {{ user.phnum }}</p>
     <p>Date of Birth: {{ user.dob }}</p>
 
-    <button><a href="/">Home</a></button>
-    <button id="ed"><a href=/edit>Edit Your Info</a></button>
-    <button ><a href="/logout">Logout</a></button>
+    <button class="dashboard-button"><a href="/">Home</a></button>
+    <button id="ed" class="dashboard-button"><a href=/edit>Edit Your Info</a></button>
+    <button class="dashboard-button"><a href="/logout">Logout</a></button>
 
     {% endblock %}
