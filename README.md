@@ -21,12 +21,7 @@ product listings, shopping cart functionality, payment integration, a review and
 capabilities.(Currently not all the features are integrated.)
 
 The project is built using HTML, CSS, and JavaScript for the front-end, and a web framework Flask for the back-end.
-Currently the platform is using JSON files to store it's users data and that is because the platform is not using any
-authentication system out there. Version one of it was using firebase to store it's users data but now it's using JSON
-file to store it's users data locally. I know that using JSON file to store user data is not technically feasible but
-it's the first stage of the website going from using other api's to building it's own database. The products listed on
-the website was being retrived from fakestore's API on version 1.0. But now that is coming from locally stored data
-using SQLite3. This two are the main improvements in this version.
+Currently the platform is using SQlite 3 database to store it's users info. Version one of it was using firebase to store it's users data but now it's using it's own database. The products listed on the website was being retrived from fakestore's API on version 1.0. But now that is coming from locally stored data using SQLite3. This two are the main improvements in this version.
 
 ## Features
 
