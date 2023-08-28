@@ -12,13 +12,16 @@
 <h1>{{ category }}</h1>
 <div id="main-container">
     {% for item in products %}
+    {% include 'includes/item_modal.html' %}
     <div id="product-card">
         <img alt="{{ item.title }}" src="{{ item.image }}">
-        <h3>{{ item.title }}</h3>
-        <p>{{ item.description }}</p>
+        <h3>{{ item.title[:30] + '...' }}</h3>
+        <p>{{ item.description[:50] + '...' }}</p>
         <p>Price: ${{ item.price }}</p>
-        <button class="orderbtn">PURCHASE</button>
+        <button class="orderbtn" data-toggle="modal" data-target="#Modal-MoreInfo{{ item.id }}">More Info</button>
+        <button class="orderbtn" data-toggle="modal" data-target="#Modal-Confirm{{ item.id }}">Purchase Item</button>
+
     </div>
     {% endfor %}
 
-    {% endblock %}
+{% endblock %}

@@ -60,8 +60,8 @@ body {
     border-radius: 4px;
     cursor: pointer;
     flex-grow: 1;
-    margin-right: 7px;
     color: white;
+    margin: 5%;
   }
 
 #banner {

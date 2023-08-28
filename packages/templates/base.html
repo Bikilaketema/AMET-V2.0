@@ -29,14 +29,11 @@
             <button><a href="{{ url_for('signup') }}" id="nav-anchor">Sign up</a></button>
             <button><a href="{{ url_for('about') }}" id="nav-anchor">About</a></button>
             {% endif %}
-        </div>
-        {% if current_user.is_authenticated %}
-        <div id="bottom-section">
 
-            <input class="search-input" placeholder="Search products" type="text">
-            <a href="{{ url_for('dashboard') }}" id="profile-icon"><img class="icon" src="{{ url_for('static', filename='icons/profile-user.png') }}"></a>
-        </div>
-        {% endif %}
+            {% if current_user.is_authenticated %}
+            <a href="{{ url_for('dashboard') }}" ><img class="icon" id="profile-icon" src="{{ url_for('static', filename='icons/profile-user.png') }}"></a>
+            {% endif %}
+        
     </div>
 
 </header>
@@ -69,6 +66,6 @@
 </body>
 
 <footer>
-    <p>&copy; 2023 Online Marketplace. All rights reserved.</p>
+    <p>&copy; AMET. All rights reserved.</p>
 </footer>
 </html>

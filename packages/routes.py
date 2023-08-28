@@ -1,9 +1,9 @@
-from flask import render_template, redirect,url_for,flash
+from flask import render_template, redirect,url_for,flash, request
 from packages import app
 from packages import db
-from packages.forms import SignupForm, LoginForm
+from packages.forms import SignupForm, LoginForm, PurchaseItemForm
 from packages.models import Product, Category, User
-from flask_login import login_user,login_required,logout_user
+from flask_login import login_user,login_required,logout_user,current_user
 
 
 # route to display the homepage of the website
@@ -16,11 +16,25 @@ def index():
 
 
 #route to display the market page of the webiste
-@app.route('/market')
+@app.route('/market', methods=['GET','POST'])
 @login_required
 def market():
-    products_data = Product.query.all()
-    return render_template('market.html', products=products_data)
+    purchase_form = PurchaseItemForm()
+    if request.method == "POST":
+        purchased_item = request.form.get('purchased_item')
+        p_item_object = Product.query.filter_by(title=purchased_item).first()
+        if p_item_object:
+            if current_user.can_purchase(p_item_object):
+                p_item_object.owner = current_user.id
+                current_user.budget -= p_item_object.price
+                db.session.commit()
+                flash(f"Congrats! You have successfully purchased {p_item_object.title} for ${p_item_object.price}.",category='success')
+                return redirect(url_for('market'))
+            else:
+                flash(f"Unfortunately you don't have enough money to purchase {p_item_object.title}.",category='danger')
+
+    products_data = Product.query.filter_by(owner=None)
+    return render_template('market.html', products=products_data, purchase_form=purchase_form)
 
 
 # root to display the products category page
@@ -33,11 +47,25 @@ def products():
     return render_template('products.html', categories=categories)
 
 
-@app.route('/category/<string:category>')
+@app.route('/category/<string:category>', methods=['GET','POST'])
 @login_required
 def category(category):
-    products = Product.query.filter_by(category=category).all()
-    return render_template('category.html', category=category, products=products)
+    purchase_form = PurchaseItemForm()
+    products = Product.query.filter_by(category=category,owner=None).all()
+    if request.method == "POST":
+        purchased_item = request.form.get('purchased_item')
+        p_item_object = Product.query.filter_by(title=purchased_item).first()
+        if p_item_object:
+            if current_user.can_purchase(p_item_object):
+                p_item_object.owner = current_user.id
+                current_user.budget -= p_item_object.price
+                db.session.commit()
+                flash(f"Congrats! You have successfully purchased {p_item_object.title} for ${p_item_object.price}.",category='success')
+                return redirect(url_for('category', category=category))
+            else:
+                flash(f"Unfortunately you don't have enough money to purchase {p_item_object.title}.",category='danger')
+
+    return render_template('category.html', category=category, products=products, purchase_form=purchase_form)
 
 # route to display the sign-up page
 @app.route('/signup',methods=['GET','POST'])
@@ -52,6 +80,8 @@ def signup():
                               password=form.password1.data)
         db.session.add(user_to_create)
         db.session.commit()
+        login_user(user_to_create)
+        flash(f'Account created Successfully! You are now logged in as {user_to_create.username}!', category='success')
         return redirect(url_for('dashboard'))
     if form.errors != {}:
         for error_msg in form.errors.values():
@@ -84,7 +114,9 @@ def logout():
 @login_required
 def dashboard():
     users = User.query.all()
-    return render_template('dashboard.html',user=users)
+    purchase_form = PurchaseItemForm()
+    owned_items = Product.query.filter_by(owner=current_user.id)
+    return render_template('dashboard.html',user=users, owned_items=owned_items,purchase_form=purchase_form)
 
 
 # route to display the about page

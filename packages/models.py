@@ -30,6 +30,12 @@ class User(db.Model, UserMixin):
     password_hash = db.Column(db.String(length=20), nullable=False)
     product = db.relationship('Product',backref='owned_user',lazy=True)
 
+    @property
+    def prettier_budget(self):
+        formatted_budget = "{:,.2f}".format(self.budget)
+        return f'$ {formatted_budget}'
+
+
 
     @property
     def password(self):
@@ -41,3 +47,6 @@ class User(db.Model, UserMixin):
 
     def check_password_correction(self, attempted_password):
         return bcrypt.check_password_hash(self.password_hash, attempted_password)
+    
+    def can_purchase(self, item_obj):
+        return self.budget >= item_obj.price
