@@ -2,23 +2,23 @@
 
 {% block title %}Category{% endblock %}
 {% block css %}
-<link rel="stylesheet" href="{{ url_for('static', filename='base.css') }}">
-<link rel="stylesheet" href="{{ url_for('static', filename='products.css') }}">
+<link href="{{ url_for('static', filename='base.css') }}" rel="stylesheet">
+<link href="{{ url_for('static', filename='products.css') }}" rel="stylesheet">
 {% endblock %}
 
 {% block content %}
-            <h1>Categories</h1>
-            <div id="categories-grid">
-                {% for category_info in categories %}
-                <div id="category-card">
-                    <img src="{{ category_info.image }}" alt="{{ category_info.name }}" class="category-icons">
-                    
-                    <div id="category-name">
-                    <h3>{{ category_info.name }}</h3>
-                    <a href="/category/{{ category_info.name }}" id="view-product-button">View Products</a>
-                    </div>
-                    
-                </div>
-                {% endfor %}
-            </div>
+<h1>Categories</h1>
+<div id="categories-grid">
+    {% for category_info in categories %}
+    <div id="category-card">
+        <img alt="{{ category_info.name }}" class="category-icons" src="{{ category_info.image }}">
+
+        <div id="category-name">
+            <h3>{{ category_info.name }}</h3>
+            <a href="/category/{{ category_info.name }}" id="view-product-button">View Products</a>
+        </div>
+
+    </div>
+    {% endfor %}
+</div>
 {% endblock %}

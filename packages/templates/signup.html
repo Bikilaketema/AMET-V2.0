@@ -2,41 +2,51 @@
 
 {% block title %}Signup{% endblock %}
 {% block css %}
-<link rel="stylesheet" href="{{ url_for('static', filename='base.css') }}">
-<link rel="stylesheet" href="{{ url_for('static', filename='signup.css') }}">
+<link href="{{ url_for('static', filename='base.css') }}" rel="stylesheet">
+<link href="{{ url_for('static', filename='signup.css') }}" rel="stylesheet">
 {% endblock %}
 
 {% block content %}
-    <div id="signup-container">
-        <h1>Sign Up</h1>
-        
-        {% if error %}
-            <p style="color: red;">{{ error }}</p>
-        {% endif %}
-        <form id="signup" method="POST" action="/signup">
+<div id="signup-container">
+    <h1>Sign Up</h1>
 
-            <label for="fname">First name</label>
-            <input type="text" name="fname" required>
+    {% if error %}
+    <p style="color: red;">{{ error }}</p>
+    {% endif %}
+    <form method="POST" class="form-register">
 
-            <label for="lname">Last name</label>
-            <input type="text" name="lname" required>
+        {{ form.hidden_tag() }}
 
-            <label for="phnum">Phone Number</label>
-            <input type="tel" name="phnum" placeholder="0942-932-231" pattern="[0-9]{4}-[0-9]{3}-[0-9]{3}" required>
-            <label for="email">Email:</label>
-            <input type="email" name="email" value="{{ email }}" required autocomplete="off">
+        {{ form.username.label() }}
+        {{ form.username(class="form-control",placeholder="Username") }}
 
-            <label for="dob">Date of Birth</label>
-            <input type="date" name="dob" required>
+        {{ form.email.label() }}
+        {{ form.email(class="form-control",placeholder="Email") }}
 
-            <label for="password">Password:</label>
-            <input type="password" name="password" required autocomplete="new-password">
+        {{ form.phone.label() }}
+        {{ form.phone(class="form-control",placeholder="Phone number") }}
 
-            <label for="password">Confirm your Password:</label>
-            <input type="password" name="confirm_password" required autocomplete="new-password">
+        {{ form.dob.label() }}
+        {{ form.dob(class="form-control",placeholder="Date of birth") }}
 
-            <button type="submit" id="signup-button">Sign Up</button>
-          </form>
+        {{ form.budget.label() }}
+        {{ form.budget(class="form-control",placeholder="Enter your budget in ETB") }}
+
+        {{ form.password1.label() }}
+        {{ form.password1(class="form-control",placeholder="Enter a password") }}
+
+        {{ form.password2.label() }}
+        {{ form.password2(class="form-control",placeholder="Confirm the password") }}
+
+        <br>
+        {{ form.submit(class="signup-btn") }}
+    </form>
+
+    <div class="checkbox mb-3">
+        <h6>Already have an account?</h6>
+        <a class="btn btn-sm btn-secondary" href="{{ url_for('login') }}">Log in</a>
 
     </div>
+
+</div>
 {% endblock %}

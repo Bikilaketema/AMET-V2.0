@@ -1,24 +1,30 @@
 {% extends 'base.html' %}
 
-{% block title %}Category{% endblock %}
+{% block title %}Market{% endblock %}
 
 {% block css %}
 <link href="{{ url_for('static', filename='base.css') }}" rel="stylesheet">
 <link href="{{ url_for('static', filename='index.css') }}" rel="stylesheet">
+
 {% endblock %}
 
 {% block content %}
+<!-- Your index.html content here -->
 
-<h1>{{ category }}</h1>
+<img id="banner" src="{{ url_for('static', filename='images/banner.jpg') }}">
+
 <div id="main-container">
+
     {% for item in products %}
     <div id="product-card">
         <img alt="{{ item.title }}" src="{{ item.image }}">
-        <h3>{{ item.title }}</h3>
-        <p>{{ item.description }}</p>
+        <h3>{{ item.title[:30] + '...' }}</h3>
+        <p>{{ item.description[:50] + '...' }}</p>
         <p>Price: ${{ item.price }}</p>
         <button class="orderbtn">PURCHASE</button>
     </div>
     {% endfor %}
 
-    {% endblock %}
+</div>
+
+{% endblock %}

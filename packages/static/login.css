@@ -37,7 +37,7 @@ h1 {
   }
   
   
-  #login-button {
+  .login-btn {
     background-color: #4CAF50;
     color: #fff;
     border: none;

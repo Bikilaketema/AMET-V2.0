@@ -20,12 +20,13 @@ class SignupForm(FlaskForm):
     email = EmailField(label="Email Address",validators=[Email(),DataRequired()])
     phone = IntegerField(label="Phone Number",validators=[DataRequired()])
     dob = DateField(label="Date of birth",validators=[DataRequired()])
+    budget = IntegerField(label="Enter your budget",validators=[DataRequired()])
     password1 = PasswordField(label="Password",validators=[Length(min=6),DataRequired()])
     password2 = PasswordField(label="Confirm password",validators=[EqualTo('password1'),DataRequired()])
     submit = SubmitField(label="Sign up")
 
 
 class LoginForm(FlaskForm):
-    username = StringField(label="Username")
-    password = PasswordField(label="Password")
-    login = SubmitField(label="Log in")
+    username = StringField(label="Username",validators=[Length(min=4,max=30),DataRequired()])
+    password = PasswordField(label="Password",validators=[Length(min=6),DataRequired()])
+    submit = SubmitField(label="Log in")

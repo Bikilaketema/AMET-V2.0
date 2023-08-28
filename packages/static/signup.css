@@ -32,7 +32,7 @@ label {
 
 
 
-#signup-button, .dashboard-button {
+#signup-button, .dashboard-button, .signup-btn, .index-btn {
     background-color: #4CAF50;
     color: #fff;
     border: none;
@@ -43,7 +43,7 @@ label {
     margin-bottom: 10px;
 }
 
-.dashboard-button a {
+.index-btn, .dashboard-button > a {
   text-decoration: none;
   color: #fff;
 }

@@ -73,6 +73,11 @@ body {
   flex-grow: 1;
 }
 
+#profile-icon {
+  margin-left: 10%;
+  margin-right: 5%;
+}
+
 #navbar button {
   background-color: #4CAF50;
   font-size: 10px;
