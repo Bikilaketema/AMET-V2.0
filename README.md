@@ -27,8 +27,7 @@ Currently the platform is using SQlite 3 database to store it's users info. Vers
 
 - User authentication: Users can create accounts and log in.(Used flask form and Flask login library to implement)
 - Product listings: Buyers can see what products are available on the platform.
-- Review and rating system(Not implemented)
-- Messaging system: Buyers and sellers can communicate with each other through the platform.(Not implemented).
+- Users can buy the product they want from the platform.
 - Responsive design: The platform is optimized for desktop and mobile screens using CSS flex box and media query. (Still
   not used any CSS Framework).
 
@@ -50,7 +49,7 @@ Once they open the website, users can perform the following actions:
 
 - Create an account or log in with existing credentials.
 - Browse product listings and search for specific items.(Searching is not implemented.)
-- Select and click the Purchase button to buy the product they want.
+- Select and click the Purchase button to buy the product they want or see more details about the product by clicking more info.
 ## NB
 
 This project is underdevelopment. You can download the repo. Create a python3 virtual environement install the
