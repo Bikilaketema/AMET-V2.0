@@ -9,7 +9,7 @@
 {% endblock %}
 
 {% block content %}
-
+{% include 'includes/delete_modal.html' %}
 
 <h1>Welcome to your Dashboard, {{ current_user.username }}!</h1>
 <h3>You have successfully logged in. Now you can buy what you want!</h3>
@@ -30,7 +30,6 @@
         <p>{{ item.description[:50] + '...' }}</p>
         <p>Price: ${{ item.price }}</p>
         <button class="orderbtn" data-toggle="modal" data-target="#Modal-MoreInfo{{ item.id }}">More Info</button>
-
     </div>
     {% endfor %}
 
@@ -38,6 +37,10 @@
 
 <button class="dashboard-button" style="margin-top: 10px;"><a href="{{ url_for('market') }}">Home</a></button>
 <button class="dashboard-button" style="margin-top: 10px;"><a href="{{ url_for('logout') }}">Logout</a></button>
+<button class="dashboard-button" data-toggle="modal" data-target="#Modal-DeleteAccount{{ current_user.username }}">Delete my account</button>
+<button class="dashboard-button"><a href="{{ url_for('update_info') }}">Update my Info</a></button>
+
+
 
 
 {% endblock %}

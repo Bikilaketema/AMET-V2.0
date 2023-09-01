@@ -1,7 +1,7 @@
 from flask import render_template, redirect,url_for,flash, request
 from packages import app
 from packages import db
-from packages.forms import SignupForm, LoginForm, PurchaseItemForm
+from packages.forms import SignupForm, LoginForm, PurchaseItemForm, UpdateInfoForm, DeleteAccountForm
 from packages.models import Product, Category, User
 from flask_login import login_user,login_required,logout_user,current_user
 
@@ -11,9 +11,6 @@ from flask_login import login_user,login_required,logout_user,current_user
 @app.route('/home')
 def index():
     return render_template('index.html')
-
-
-
 
 #route to display the market page of the webiste
 @app.route('/market', methods=['GET','POST'])
@@ -46,7 +43,7 @@ def products():
 
     return render_template('products.html', categories=categories)
 
-
+#route to display the products by their category
 @app.route('/category/<string:category>', methods=['GET','POST'])
 @login_required
 def category(category):
@@ -85,10 +82,10 @@ def signup():
         return redirect(url_for('dashboard'))
     if form.errors != {}:
         for error_msg in form.errors.values():
-            flash(f'There was an error creating a user: {error_msg}',category='danger')
+            flash(f'{error_msg}',category='danger')
     return render_template('signup.html',form=form)
 
-
+#rout to log in the user
 @app.route('/login', methods=['GET','POST'])
 def login():
     form = LoginForm()
@@ -103,20 +100,75 @@ def login():
 
     return render_template('login.html', form=form)
 
+#route to log out the user
 @app.route('/logout')
 def logout():
     logout_user()
     flash(f'You have been logged out!',category='info')
     return redirect(url_for('index'))
 
-
-@app.route('/dashboard')
+#route to display the dashboard of the user
+@app.route('/dashboard', methods=['GET', 'POST'])
 @login_required
 def dashboard():
-    users = User.query.all()
     purchase_form = PurchaseItemForm()
     owned_items = Product.query.filter_by(owner=current_user.id)
-    return render_template('dashboard.html',user=users, owned_items=owned_items,purchase_form=purchase_form)
+    delete_form = DeleteAccountForm()
+
+    if delete_form.validate_on_submit():
+        user_id = current_user.id
+        user = User.query.get(user_id)
+
+        if user:
+            # Update products owned by the user to set the 'owner' to None
+            Product.query.filter_by(owner=user_id).update({"owner": None})
+
+            # Delete the user account from the database
+            db.session.delete(user)
+            db.session.commit()
+
+            flash('Your account has been deleted. We are sorry to see you go.', 'danger')
+
+            return redirect(url_for('index'))
+    
+    return render_template('dashboard.html', user=current_user, owned_items=owned_items, purchase_form=purchase_form, delete_form=delete_form)
+
+
+@app.route('/update', methods=['GET', 'POST'])
+@login_required  # Requires the user to be logged in to access this route
+def update_info():
+    update_info = UpdateInfoForm()
+    
+    if update_info.validate_on_submit():
+        # Get the current user's ID
+        user_id = current_user.id 
+        
+        # Fetch the user from the database by ID
+        user = User.query.get(user_id)
+        
+        if user:
+            # Update the user's attributes from the form data
+            user.username = update_info.username.data
+            user.email = update_info.email.data
+            user.phone = update_info.phone.data
+            user.budget = update_info.budget.data
+            
+            # Commit the changes to the database
+            db.session.commit()
+            
+            flash('Your profile has been updated successfully!', 'success')
+            
+            return redirect(url_for('dashboard'))
+        
+    if update_info.errors != {}:
+        for error_msg in update_info.errors.values():
+            flash(f'{error_msg}',category='danger')
+    
+    return render_template('update_profile.html', update_info=update_info)
+
+
+
+
 
 
 # route to display the about page

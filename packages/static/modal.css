@@ -19,5 +19,14 @@ img {
     cursor: pointer;
     font-size: 16px;
     margin-bottom: 10px;
+    margin-top: 10px;
 
+}
+
+.modal-label  {
+    font-size: 15px;
+}
+
+.modal-input {
+    width: 100%;
 }
