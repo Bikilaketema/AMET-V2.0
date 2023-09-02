@@ -36,9 +36,10 @@
 </div>
 
 <button class="dashboard-button" style="margin-top: 10px;"><a href="{{ url_for('market') }}">Home</a></button>
-<button class="dashboard-button" style="margin-top: 10px;"><a href="{{ url_for('logout') }}">Logout</a></button>
 <button class="dashboard-button" data-toggle="modal" data-target="#Modal-DeleteAccount{{ current_user.username }}">Delete my account</button>
 <button class="dashboard-button"><a href="{{ url_for('update_info') }}">Update my Info</a></button>
+<button class="dashboard-button"><a href="{{ url_for('change_password') }}">Change password</a></button>
+
 
 
 

@@ -17,25 +17,25 @@
 
         {{ form.hidden_tag() }}
 
-        {{ form.username.label() }}
+        {{ form.username.label(class="signup-label") }}
         {{ form.username(class="form-control",placeholder="Username") }}
 
-        {{ form.email.label() }}
+        {{ form.email.label(class="signup-label") }}
         {{ form.email(class="form-control",placeholder="Email") }}
 
-        {{ form.phone.label() }}
+        {{ form.phone.label(class="signup-label") }}
         {{ form.phone(class="form-control",placeholder="Phone number - without 0") }}
 
-        {{ form.dob.label() }}
+        {{ form.dob.label(class="signup-label") }}
         {{ form.dob(class="form-control",placeholder="Date of birth") }}
 
-        {{ form.budget.label() }}
+        {{ form.budget.label(class="signup-label") }}
         {{ form.budget(class="form-control",placeholder="Enter your budget in ETB") }}
 
-        {{ form.password1.label() }}
+        {{ form.password1.label(class="signup-label") }}
         {{ form.password1(class="form-control",placeholder="Enter a password") }}
 
-        {{ form.password2.label() }}
+        {{ form.password2.label(class="signup-label") }}
         {{ form.password2(class="form-control",placeholder="Confirm the password") }}
 
         <br>

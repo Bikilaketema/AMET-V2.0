@@ -10,13 +10,14 @@
 {% block content %}
 
 <div id="login-container">
+    <h1>Log in</h1>
     <form method="POST" class="form-register">
         {{ form.hidden_tag() }}
 
-        {{ form.username.label() }}
+        {{ form.username.label(class="login-label") }}
         {{ form.username(class="form-control",placeholder="Username") }}
 
-        {{ form.password.label() }}
+        {{ form.password.label(class="login-label") }}
         {{ form.password(class="form-control",placeholder="Enter your password") }}
 
         <br>

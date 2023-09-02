@@ -1,9 +1,10 @@
 from flask import render_template, redirect,url_for,flash, request
-from packages import app
+from packages import app,bcrypt
 from packages import db
-from packages.forms import SignupForm, LoginForm, PurchaseItemForm, UpdateInfoForm, DeleteAccountForm
+from packages.forms import SignupForm, LoginForm, PurchaseItemForm, UpdateInfoForm, DeleteAccountForm, ChangePasswordForm
 from packages.models import Product, Category, User
 from flask_login import login_user,login_required,logout_user,current_user
+from flask_bcrypt import check_password_hash, generate_password_hash
 
 
 # route to display the homepage of the website
@@ -138,6 +139,24 @@ def dashboard():
 @login_required  # Requires the user to be logged in to access this route
 def update_info():
     update_info = UpdateInfoForm()
+
+    # Check if the user already has a username, and set the default value accordingly
+    if not update_info.username.data:
+        update_info.username.data = current_user.username
+
+    # Check if the user already has a phone number, and set the default value accordingly
+    if not update_info.phone.data:
+        update_info.phone.data = current_user.phone
+
+    # Check if the user already has an email address, and set the default value accordingly
+    if not update_info.email.data:
+        update_info.email.data = current_user.email
+
+    # Check if the user already has a budget value, and set the default value accordingly
+    if not update_info.budget.data:
+        update_info.budget.data = current_user.budget
+
+
     
     if update_info.validate_on_submit():
         # Get the current user's ID
@@ -166,7 +185,26 @@ def update_info():
     
     return render_template('update_profile.html', update_info=update_info)
 
+@app.route('/change_password', methods=['GET', 'POST'])
+@login_required
+def change_password():
+    form = ChangePasswordForm()
+    
+    if form.validate_on_submit():
+        # Check if the old password provided matches the current user's password
+        if form.old_password.data == form.new_password.data:
+            flash('New password must be different from the old password.', 'danger')
 
+        elif not bcrypt.check_password_hash(current_user.password_hash, form.old_password.data):
+            flash('Incorrect old password. Please try again.', 'danger')
+        else:
+            # Update the user's password with the new password
+            current_user.password_hash = bcrypt.generate_password_hash(form.new_password.data).decode('utf-8')
+            db.session.commit()
+            flash('Password updated successfully!', 'success')
+            return redirect(url_for('dashboard'))
+
+    return render_template('change_password.html', form=form)
 
 
 

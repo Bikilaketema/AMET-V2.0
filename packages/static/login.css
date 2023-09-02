@@ -51,6 +51,10 @@ h1 {
     background-color: #1a5a1d;
   }
 
+  .login-label  {
+    font-size: 15px;
+  }
+
   @media (min-width: 768px) {
 
     #login-container {
