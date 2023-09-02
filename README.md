@@ -30,6 +30,8 @@ Currently the platform is using SQlite 3 database to store it's users info. Vers
 - Users can buy the product they want from the platform.
 - Responsive design: The platform is optimized for desktop and mobile screens using CSS flex box and media query. (Still
   not used any CSS Framework).
+- Users can edit their profiles information
+- Users can change their password
 
 ## Technologies used
 
