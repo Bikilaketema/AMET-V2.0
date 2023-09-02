@@ -55,4 +55,4 @@ Once they open the website, users can perform the following actions:
 ## NB
 
 This project is underdevelopment. You can download the repo. Create a python3 virtual environement install the
-requirements in the env and run the web app using flask.
+requirements in the env and run the run.py file.
